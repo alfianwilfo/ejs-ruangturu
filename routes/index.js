@@ -21,12 +21,12 @@ router.get("/ruangturu/logout", Controller.getLogout)
 router.get("/ruangturu/profile/:userId", Controller.renderProfile)
 
 //! Accessible ONLY for STUDENTS
-// router.use(isStudent)
+router.use(isStudent)
 router.get("/ruangturu/dashboard", isStudent, Controller.dashboard)
 router.get("/ruangturu/student/dashboard", isStudent, Controller.dashboard)
 router.get("/ruangturu/student/my-course", isStudent, Controller.myCourse)
-router.get("/ruangturu/detail-course", Controller.courseDetail)
-// router.get("/ruangturu/addClass", Controller.addRelation)
+router.get("/ruangturu/detail-course",isStudent, Controller.courseDetail)
+router.get("/ruangturu/addClass/:CourseId", isStudent, Controller.addRelation)
 
 
 //! Accessible ONLY for TEACHERS

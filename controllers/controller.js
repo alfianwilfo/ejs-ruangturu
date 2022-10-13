@@ -229,16 +229,22 @@ class Controller {
         })
     }
     static addRelation(req, res) {
-        console.log(req.params);
-        // Course.find(all)
-        // .then((data) => {
-        //     let data.
-        //     res.send(data)
-        // })
-        // .catch((err) => {
-        //     console.log(err);
-        //     res.send(err)
-        // })
+        const UserId = req.session.userId
+        const { CourseId } = req.params
+
+        Class.create({UserId, CourseId})
+        .then((success) => {
+            return Course.increment({ totalStudent: 1}, {
+                where: { id: CourseId }
+            })
+        })
+        .then((data) => {
+            res.redirect('/ruangturu/student/dashboard')
+        })
+        .catch(err => {
+            console.log(err);
+            res.send(err)
+        })
     }
 
     //! Accessible ONLY for TEACHERS
