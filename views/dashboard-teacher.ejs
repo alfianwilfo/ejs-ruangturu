@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table, th, td {
+          border: 1px solid black;
+        }
+    </style>
+    <title>Teacher Dashboard</title>
+</head>
+<body>
+    <h1>GOSSIP STUDENTS HERE GUYS</h1>
+    <p>whats here doesnt come outside</p>
+    <br><br>
+    <p>Mau ke dashboard student?</p>
+    <% if (error) { %>
+        <p style="color: red;"><%= error %> </p>
+    <% } %> 
+    <a href="/ruangturu/student/dashboard"><button type="button">dashboard</button></a>
+    <br><br>
+    <p>Mau logout? Kenapa?</p>
+    <a href="/ruangturu/logout"><button type="button">Log out di sini</button></a>
+    <br><br>
+    <p>di bawah ini ada table isinya semua course yg dia punya/bisa akses(add, edit, delete)</p>
+    <a href="/ruangturu/add-course"><button type="button">Add Course</button></a>
+    <br><br>
+    <table>
+        <tr>
+            <th>Course Name</th>
+            <th>Description</th>
+            <th>Total Student</th>
+            <th>Action</th>
+        </tr>
+        <% mycourse.forEach(el => { %>
+            <tr>
+                <td><%= el.name %> </td>
+                <td><%= el.description %> </td>
+                <td><%= el.totalStudent %> </td>
+                <td>
+                    <a href="/ruangturu/edit-course/<%= el.id %>"><button>Edit</button></a>
+                    <a href="/ruangturu/delete-course/<%= el.id %>"><button>Delete</button></a>
+                </td>
+            </tr>
+        <% }) %>
+    </table>
+</body>
+</html>

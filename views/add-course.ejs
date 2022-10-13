@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Course</title>
+</head>
+<body>
+    <h1>Add Course here!</h1>
+    <form action="/ruangturu/add-course" method="post">
+        <label>Course name</label>
+        <br><br>
+        <input type="text" name="name">
+        <br><br>
+        <label>Course Description</label>
+        <br><br>
+        <input type="text" name="description">
+        <br><br>
+        <label>Author</label>
+        <br><br>
+        <input type="input" name="author" disabled value="<%= teacherName %>">
+        <br><br>
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html>

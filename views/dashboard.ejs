@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table, th, td {
+          border: 1px solid black;
+        }
+    </style>
+    <title>Post Login</title>
+</head>
+<body>
+    <h1>LOGIN BERHASIL CUY</h1>
+    <% if (error) { %>
+        <p style="color: red;"><%= error %> </p>
+    <% } %> 
+    <br>
+    <p>Mau ke halaman profilemu sendiri?</p>
+    <a href="/ruangturu/profile/<%= userId  %>"><button>Profile</button></a>
+    <br><br>
+    <p>ForumGosip Teacher</p>
+    <a href="/ruangturu/teacher/dashboard"><button type="button">u Teacher? click here</button></a>
+    <br>
+    <p>Mau logout? Kenapa?</p>
+    <a href="/ruangturu/logout"><button type="button">Log out di sini</button></a>
+    <br><br>
+    <h3>Hari ini adalah hari: <%= showDay() %> </h3>
+    <br>
+    <p> Tampilin Course yang diambil</p>
+    <a href="/ruangturu/student/my-course"><button>My Course</button></a>
+    <br><br>
+    <p>Course Detail</p>
+    <a href="/ruangturu/detail-course"><button>Course Detail</button></a>
+    <br><br>
+    <form action="" method="get">
+        <label>Search Courses:</label>
+        <input type="search" name="search">
+        <input type="submit" value="submit">
+    </form>
+    <br><br>
+    <table>
+        <tr>
+            <th>Course Name</th>
+            <th>Teacher's Name</th>
+            <th>Total Student</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        <% course.forEach(el => { %>
+            <tr>
+                <td><%= el.name %></td>
+                <td><%= el.author %> </td>
+                <td><%= el.totalStudent %> </td>
+                <td><%= el.status %> </td>
+                <td><a href=""><button type="button">Take course</button></a> </td>
+            </tr>
+        <% }) %>
+    </table>
+
+</body>
+</html>

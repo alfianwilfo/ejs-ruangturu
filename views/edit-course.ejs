@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EditCourse</title>
+</head>
+<body>
+    <h1>Edit Course!</h1>
+    <form action="/ruangturu/edit-course/<%= data.id %>" method="post">
+        <label>Course name</label>
+        <br><br>
+        <input type="text" name="name" value="<%= data.name %>">
+        <br><br>
+        <label>Course Description</label>
+        <br><br>
+        <input type="text" name="description" value="<%= data.description %>">
+        <br><br>
+        <label>Author</label>
+        <br><br>
+        <input type="input" name="author" disabled value="<%= data.author %>">
+        <br><br>
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html>

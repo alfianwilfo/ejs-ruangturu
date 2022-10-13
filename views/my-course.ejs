@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table, th, td {
+          border: 1px solid black;
+        }
+    </style>
+    <title>My course</title>
+</head>
+<body>
+    <h1>COURSE GUE NIHH</h1>
+    <% if (error) { %>
+        <p style="color: red;"><%= error %> </p>
+    <% } %> 
+    <br>
+    <p>Mau logout? Kenapa?</p>
+    <a href="/ruangturu/logout"><button type="button">Log out di sini</button></a>
+    <br><br>
+    <p>Balik ke dashboard?? Pencet ini aja</p>
+    <a href="/ruangturu/student/dashboard"><button type="button">Dashboard</button></a>
+    <br><br>
+    <p>Di bawah ini ada table, isinya course yg gue ambil aja</p>
+    <br><br>
+    <table>
+        <tr>
+            <th>Course Name</th>
+            <th>Total Student</th>
+            <th>Teacher's Name</th>
+        </tr>
+        <% mycourse.forEach(el => { %>
+            <tr>
+                <td><%= el.name %> </td>
+                <td><%= el.totalStudent %> </td>
+                <td><%= el.author %> </td>
+            </tr>
+        <% }) %>
+    </table>
+</body>
+</html>
