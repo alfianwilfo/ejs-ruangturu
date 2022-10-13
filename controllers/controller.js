@@ -22,7 +22,11 @@ class Controller {
     static handlerRegister(req, res) {
         const { username, email, password, role } = req.body
         User.create({ username, email, password, role })
-        .then(success => {
+        .then(data => {
+            const { id, username, email, role } = data
+            return Profile.createProfileName(id, username, role)
+        })
+        .then(success=>{
             res.redirect("/ruangturu/login")
         })
         .catch(err => {

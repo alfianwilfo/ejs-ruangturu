@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Profile.belongsTo(models.User)
     }
+    static createProfileName(id, username, role) {
+      return Profile.create({fullName: `${username}-${role}`, class: 'duabelascumacontoh', UserId: id})
+    }
   }
   Profile.init({
     fullName: DataTypes.STRING,
