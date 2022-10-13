@@ -13,7 +13,7 @@ class Controller {
         res.render("home")
     }
     static renderAbout(req, res) {
-        res.send("ini render about ya guys")
+        res.render("about")
     }
     static renderRegister(req, res) {
         let { value, message } = req.query
@@ -104,7 +104,6 @@ class Controller {
     }
     static renderProfile(req, res) {
         let userId = req.params.userId
-        console.log(res.session);
         User.findByPk(userId, { //! hardcode dulu
             include: {
                 model: Profile
@@ -136,11 +135,12 @@ class Controller {
 
     //! Accessible ONLY for STUDENTS
     static dashboard(req, res) {
+        const userId = req.session.userId
         let course // ini buat apa yak
         Course.findAll()
         .then((data) => {
             course = data
-            return User.findByPk(1, {
+            return User.findByPk(userId, {
                 include: {
                     model: Class
                 }
@@ -307,7 +307,6 @@ class Controller {
 
         Course.findByPk(courseId)
         .then((data) => {
-            console.log(data);
             res.render('edit-course', { data })
         })
         .catch((err) => {
