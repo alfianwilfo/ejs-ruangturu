@@ -46,6 +46,11 @@ class Controller {
         const { username, email, password, role = 'Teacher' } = req.body
         User.create({ username, email, password, role })
         .then(success =>{
+            const { id, username, email, role } = success
+            return Profile.createProfileName(id, username, role)
+        })
+        .then((profile) => {
+            
             res.redirect("/ruangturu/login")
         })
         .catch(err =>{
@@ -110,22 +115,9 @@ class Controller {
             }
         }) 
         .then((data) => {
-            res.render('profile', { data })
-        })
-        .catch((err) => {
-            console.log(err);
-            res.send(err)
-        })
-    }
-    static renderEditProfile(req, res) {
-        let userId = req.params.userId
-        User.findByPk(userId, { //! hardcode dulu
-            include: {
-                model: Profile
-            }
-        }) 
-        .then((data) => {
-            res.render('profile-edit', { data })
+            let role = req.session.role
+            console.log(role);
+            res.render('profile', { data, role })
         })
         .catch((err) => {
             console.log(err);
@@ -209,6 +201,8 @@ class Controller {
         })
     }
     static courseDetail(req, res) {
+        let final;
+
         Course.findAll({
             include: {
                 model: Class,
@@ -216,16 +210,24 @@ class Controller {
             }
         })
         .then((data) => {
-            let final = data.map(el => {
+            final = data.map(el => {
+                console.log(el);
                 let name = el.name
                 let description = el.description
                 let teacher = el.author
+                let totalStudent = el.totalStudent
                 let student = el.Classes.map(({ User }) => {
                     return User.username
                 })
-                return { name, teacher, student, description }
+                let status = el.status
+                return { name, teacher, student, description, totalStudent, status }
             })
-            res.render('course-detail', { final })
+            console.log(final);
+            return Course.findAll()
+        })
+        .then((success) => {
+            
+            res.render('course-detail', { final, success })
         })
         .catch((err) => {
             console.log(err);
@@ -262,8 +264,9 @@ class Controller {
             })
         })
         .then((mycourse) => {
+            let userId = req.session.userId //! hardcode dulu
             const { error } = req.query
-            res.render('dashboard-teacher', { mycourse, error })
+            res.render('dashboard-teacher', { mycourse, error, userId })
         })
         .catch((err) => {
             console.log(err);

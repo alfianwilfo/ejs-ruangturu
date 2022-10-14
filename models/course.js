@@ -19,9 +19,9 @@ module.exports = (sequelize, DataTypes) => {
       let status = ''
       if (this.totalStudent == 0) {
         status = 'Kelas sepi parah'
-      } else if (this.totalStudent <= 10) {
+      } else if (this.totalStudent <= 3) {
         status = 'Ada murid tp dikit'
-      } else if (this.totalStudent > 10) {
+      } else if (this.totalStudent >= 4) {
         status = 'Ada banyak murid'
       }
       return status

@@ -1,18 +1,50 @@
-<!DOCTYPE html>
+git<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table, th, td {
+          border: 1px solid black;
+        }
+    </style>
     <title>Profile</title>
 </head>
 <body>
-    <h1>Ini Halaman Profilee :P</h1>
-    <p>Username: <%= data.username %> </p>
-    <p>Email: <%= data.email %> </p>
-    <p>Role: <%= data.role %> </p>
-    <p>Unique Name: <%= data.Profile.fullName %> </p>
-    <p>Class: <%= data.Profile.class %> </p>
-    <a href="/ruangturu/student/dashboard"
+    <h1>Ini Halaman Profile</h1>
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>:</th>
+            <td><%= data.username %></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <th>:</th>
+            <td><%= data.email %></td>
+        </tr>
+        <tr>
+            <th>Role</th>
+            <th>:</th>
+            <td><%= data.role %></td>
+        </tr>
+        <tr>
+            <th>Unique Name</th>
+            <th>:</th>
+            <td><%= data.Profile.fullName %></td>
+        </tr>
+        <tr>
+            <th>Class</th>
+            <th>:</th>
+            <td><%= data.Profile.class %></td>
+        </tr>
+    </table>
+    <p>Balik ke dashboard yuk</p>
+    <a href="/ruangturu/<%= role %>/dashboard"><button>Dashboard</button></a>
+    <br><br>
+    <p>Mau logout? Kenapa?</p>
+    <a href="/ruangturu/logout"><button type="button">Log out di sini</button></a>
+    <br><br>
 </body>
 </html>

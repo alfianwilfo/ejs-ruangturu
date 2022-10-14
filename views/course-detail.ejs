@@ -23,6 +23,8 @@
             <th>Course Description</th>
             <th>Teacher</th>
             <th>Student</th>
+            <th>Total Student</th>
+            <th>Status</th>
         </tr>
         <% final.forEach(el => { %>
             <tr>
@@ -32,10 +34,13 @@
                 <td>
                     <% el.student.forEach(els => { %>
                         <%= els %> 
-                    <% }) %>
+                        <% }) %>
                 </td>
+                <td><%= el.totalStudent %> </td>
+                <td><%= el.status %> </td>
             </tr>
         <% }) %>
     </table>
+    
 </body>
 </html>

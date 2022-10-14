@@ -12,17 +12,16 @@
     <title>Teacher Dashboard</title>
 </head>
 <body>
-    <h1>GOSSIP STUDENTS HERE GUYS</h1>
-    <p>whats here doesnt come outside</p>
+    <h1>TEACHER DASHBOARD</h1>
+    <br>
+    <p>Mau ke halaman profilemu sendiri?</p>
+    <a href="/ruangturu/profile/<%= userId  %>"><button>Profile</button></a>
     <br><br>
     <p>Mau ke dashboard student?</p>
     <% if (error) { %>
         <p style="color: red;"><%= error %> </p>
     <% } %> 
     <a href="/ruangturu/student/dashboard"><button type="button">dashboard</button></a>
-    <br><br>
-    <p>Mau logout? Kenapa?</p>
-    <a href="/ruangturu/logout"><button type="button">Log out di sini</button></a>
     <br><br>
     <p>di bawah ini ada table isinya semua course yg dia punya/bisa akses(add, edit, delete)</p>
     <a href="/ruangturu/add-course"><button type="button">Add Course</button></a>
