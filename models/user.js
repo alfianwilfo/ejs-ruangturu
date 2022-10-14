@@ -23,14 +23,41 @@ module.exports = (sequelize, DataTypes) => {
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: {msg: 'Username telah terdaftar'}
+      unique: {msg: 'Username telah terdaftar'},
+      validate:{
+        notEmpty: {msg: 'Username gabisa kosong'},
+        notNull: {msg: 'Username gabisa null'}
+      }
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: {msg: 'Email sudah terdaftar'}
+      unique: {msg: 'Email sudah terdaftar'},
+      validate:{
+        notEmpty: {msg: 'email gabisa kosong'},
+        notNull: {msg: 'email gabisa null'},
+        isEmail: {msg: 'format harus email'}
+      }
+
     },
-    password: DataTypes.STRING,
+    password: {
+      type: DataTypes.STRING,
+      allowNull:false,
+      validate:{
+        //!"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+        isValid(value){
+          let re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+          if (re.test(value) == false) {
+            throw new Error('min 8 letter password, with at least a symbol, upper and lower case letters and a number')
+          }
+        },
+        isGreaterThanEight(value){
+          if (value.length < 8) {
+            throw new Error('Password minimum 8 karakter')
+          }
+        }
+      }
+    },
     role:{
       type: DataTypes.STRING
     }
